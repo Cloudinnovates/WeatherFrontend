@@ -113,6 +113,7 @@ var app = angular.module('app', ['ngRoute', 'ngResource'])
         });
 
         Forecast.get({id: id}, function (data) {
+            console.log(data.response);
             $scope.forecast = data.response;
         })
 
@@ -126,13 +127,13 @@ var app = angular.module('app', ['ngRoute', 'ngResource'])
     }])
 
     .factory('Cities', ['$resource', function ($resource) {
-        return $resource('http://localhost/WeatherAPI/cities/:id', {id: "@_id"}, {
+        return $resource('http://localhost:8000/WeatherAPIsf3/web/app_dev.php/api/v1/cities/:id', {id: "@_id"}, {
             update: {method: "PUT", params: {id: "@_id"}}
         })
     }])
 
     .factory('Forecast', ['$resource', function ($resource) {
-        return $resource('http://localhost/WeatherAPI/forecast/:id', {id: "@_id"}, {
+        return $resource('http://localhost:8000/WeatherAPIsf3/web/app_dev.php/api/v1/forecasts/:id', {id: "@_id"}, {
             update: {method: "PUT", params: {id: "@_id"}}
         })
     }])
